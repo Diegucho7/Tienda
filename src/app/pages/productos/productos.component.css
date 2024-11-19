@@ -1,0 +1,15 @@
+.great-vibes-regular {
+    font-family: "Great Vibes", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .boton{
+    position: absolute;
+    top: 90%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+  }
+  .precio{
+    color: rgb(170, 73, 37);
+  }
