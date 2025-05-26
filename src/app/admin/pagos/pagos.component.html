@@ -1,0 +1,74 @@
+
+<body>
+    <!-- <header>
+        <h1>Pago de Carrito de Compras</h1>
+    </header> -->
+    <main>
+        <section class="carrito">
+            <h3>Datos del Usuario  </h3>
+            <p><span>Nombre:</span> {{usuario?.name}} {{usuario?.lastname}}</p>
+            <p><span>Cedula-RUC:</span> 0917324638001</p>
+            <p><span>Correo:</span> {{usuario?.email}} </p>
+            <p><span>Telefono:</span> 09998765 </p>
+            <p><span>Dirección:</span>Guaquil-Ecuador </p>
+
+            <h3>Lista de pedidos</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th  style="width: 150px;">Producto</th>
+                        <th  style="width: 100px;">Cantidad</th>
+                        <th  style="width: 120px;">Precio/u</th>
+                        <th  style="width: 120px;">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of productos">
+                        <td class="p2">{{item.name}}</td>
+                        <td>{{item.quantity}}</td>
+                        <td>${{item.price}}</td>
+                        <td>${{item.price * item.quantity}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            
+            <p> <span>Total:</span> ${{valor}}</p>
+        </section>
+        <section class="pago">
+            <h2>Método de Pago</h2>
+
+                <!-- <button (click)="crearOrden()">Pagar</button> -->
+            <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+
+
+            <!-- <style>.pp-WD8A62EB3H53U{text-align:center;border:none;border-radius:0.25rem;min-width:11.625rem;padding:0 2rem;height:2.625rem;font-weight:bold;background-color:#FFD140;color:#000000;font-family:"Helvetica Neue",Arial,sans-serif;font-size:1rem;line-height:1.25rem;cursor:pointer;}</style>
+        
+
+            
+            <div id="smart-button-container">
+                <div style="text-align: center;">
+                    <div id="paypal-button-container"></div>
+                </div>
+            </div> -->
+            <!-- <div id="paypal-container-LEHBTYUSL7RB6"></div> -->
+           
+<!--             
+
+            <form id="formulario-pago">
+                <label for="tarjeta">Tarjeta de Crédito:</label>
+                <input type="text" id="tarjeta" name="tarjeta" required>
+                <label for="fecha-vencimiento">Fecha de Vencimiento:</label>
+                <input type="date" id="fecha-vencimiento" name="fecha-vencimiento" required>
+                <label for="codigo-seguridad">Código de Seguridad:</label>
+                <input type="text" id="codigo-seguridad" name="codigo-seguridad" required>
+
+
+           
+
+            </form> -->
+            <!-- <button (click)="crearOrden()" id="boton-pagar" type="submit">Pagar</button> -->
+        </section>
+    </main>
+        <!-- <script src="script.js"></> -->
+</body>

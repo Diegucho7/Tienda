@@ -1,0 +1,35 @@
+.azul{
+    color: blue;
+}
+.negro{
+    color: black;
+}
+
+@media (max-width: 768px) {
+    .tarejta {
+      width: 20vw;
+      height: 20vw;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .tarejta {
+      width: 30vw;
+      height: 30vw;
+    }
+  }
+
+  .tarejta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 10vw;
+    height: 10vw;
+    max-width: 200px;
+    max-height: 200px;
+    margin: 20px;
+  }
+  .cursor-pointer{
+    cursor: pointer;
+  }

@@ -1,0 +1,82 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+}
+
+.carrito {
+    background-color: #f7f7f7;
+    padding: 1em;
+    border: 1px solid #ddd;
+    margin-bottom: 2em;
+}
+
+.carrito ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.carrito li {
+    padding: 0.5em;
+    border-bottom: 1px solid #ccc;
+}
+
+.carrito li:last-child {
+    border-bottom: none;
+}
+
+.carrito span {
+    font-weight: bold;
+}
+
+.pago {
+    background-color: #f7f7f7;
+    padding: 1em;
+    border: 1px solid #ddd;
+}
+
+.pago form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pago label {
+    margin-bottom: 0.5em;
+}
+
+.pago input {
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+}
+
+.pago button {
+    background-color: #333;
+    color: #fff;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 0.25em;
+    cursor: pointer;
+}
+
+.pago button:hover {
+    background-color: #444;
+}
+
+body {background-color:#f6f6f5;}

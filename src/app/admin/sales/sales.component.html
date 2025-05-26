@@ -1,0 +1,98 @@
+<div class="p-3">
+  <a class="btn btn-success" href="#/user/">Atrás</a>
+</div>
+<div class="container pt-3">
+
+  <h3>Venta</h3>
+
+
+</div>
+
+
+<div class="container mt-3">
+  <h3>Cliente</h3>
+
+
+  <input
+    type="text"
+    class="form-control mb-3"
+    placeholder="Buscar por número de identificación o nombre"
+    [(ngModel)]="searchTerm" />
+
+  <ul class="list-group mb-3" style="max-height: 300px; overflow-y: auto;">
+    <li
+      *ngFor="let person of filteredPersons()"
+      (click)="selectPerson(person)"
+      class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+      [class.active]="selectedPerson?.id === person.id"
+      style="cursor: pointer;"
+    >
+      <div>
+        {{ person.primerNombre }} {{ person.apellidoPaterno }} {{ person.apellidoMaterno }}
+      </div>
+      <small class="text-muted">{{ person.numberIdentification }}</small>
+    </li>
+  </ul>
+
+  <div *ngIf="selectedPerson" class="card border-primary">
+    <div class="card-header bg-primary text-white">
+      Persona Seleccionada
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ selectedPerson.primerNombre }} {{ selectedPerson.apellidoPaterno }} {{ selectedPerson.apellidoMaterno }}</h5>
+      <p class="card-text"><strong>Número de Identificación:</strong> {{ selectedPerson.numberIdentification }}</p>
+    </div>
+  </div>
+
+</div>
+
+
+
+<div class="container pt-4">
+  <form [formGroup]="articulosForm" (ngSubmit)="onSubmit()">
+    <div class="table-responsive">
+      <table class="table table-striped table-hover align-middle">
+        <thead class="table-dark">
+        <tr>
+          <th>Nombre</th>
+          <th>Código</th>
+          <th>Precio</th>
+          <th>Descripción</th>
+          <th>Porcentaje de Descuento</th>
+          <th>Cantidad</th>
+          <th class="text-center">Seleccionar</th>
+        </tr>
+        </thead>
+        <tbody formArrayName="items">
+        <tr *ngFor="let control of items.controls; let i = index" [formGroupName]="i">
+          <td>{{ Articulos[i]?.name }}</td>
+          <td>{{ Articulos[i]?.code }}</td>
+          <td>$ {{ Articulos[i]?.price }}</td>
+          <td>{{ Articulos[i]?.description }}</td>
+          <td style="max-width: 90px;"><input
+            class="form-control form-control-sm"
+            style="width: 100%;"
+            type="number" formControlName="discount"></td>
+          <td style="max-width: 90px;">
+            <input
+              type="number"
+              formControlName="quantity"
+              min="1"
+              [max]="Articulos[i]?.stock"
+              class="form-control form-control-sm"
+              style="width: 100%;" />
+
+          </td>
+          <td class="text-center">
+            <input type="checkbox" formControlName="selected" class="form-check-input" />
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="text-start mt-3">
+      <button class="btn btn-primary" type="submit">Enviar</button>
+    </div>
+  </form>
+</div>

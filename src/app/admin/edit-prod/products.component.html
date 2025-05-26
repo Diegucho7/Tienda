@@ -1,0 +1,143 @@
+
+
+<div class="p-3">
+    <a class="btn btn-success" href="#/user/product">Atrás</a>
+</div>
+<div class="row animated fadeIn fast">
+    <div class="col-12">
+
+        <div class="alert alert-info text-center"
+        *ngIf="cargando">
+
+            <h4 class="alert-heading">Cargando</h4>
+            <i class="fa fa-spin fa-refresh fa-2x"></i>
+            <p class="mb-0">Por favor espere</p>
+
+        </div>
+
+    </div>
+</div>
+<div *ngIf="!cargando" class="row container">
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Producto</h4>
+                <h6 class="card-subtitle">Actualizar Información</h6>
+                <form [formGroup]="formProducts" class="form-horizontal p-t-20"
+                >
+                <!-- [formGroup]="periodoForm"
+                (ngSubmit)="guardarPeriodo()" -->
+
+
+
+
+
+
+
+                    <div class="form-group row">
+                        <label for="exampleInputEmail3" class="col-sm-3 control-label">Nombre</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+
+                              <input type="text" class="form-control"  formControlName="name" placeholder="Nombre">
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row ">
+                        <label for="exampleInputEmail3" class="col-sm-3 control-label">Código</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+
+                              <input type="text" formControlName="code" class="form-control" placeholder="Código">
+
+
+
+                            </div>
+                        </div>
+                    </div>
+<!--                    <div class="form-group row ">-->
+<!--                        <label for="exampleInputEmail3" class="col-sm-3 control-label">Marca</label>-->
+<!--                        <div class="col-sm-9">-->
+<!--                            <div class="input-group">-->
+
+<!--                              <input type="text" formControlName="marca" class="form-control" placeholder="Marca">-->
+
+
+
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+
+                    <div class="form-group row">
+                        <label for="exampleInputEmail3" class="col-sm-3 control-label">Precio</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+
+                                <input type="number" class="form-control" formControlName="price" placeholder="Precio">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="exampleInputEmail3" class="col-sm-3 control-label">Stock</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+
+                                <input type="number" class="form-control" placeholder="stock" formControlName="stock">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="exampleInputEmail3" class="col-sm-3 p-2 control-label">Descripción</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+
+                                <textarea formControlName="description" class="form-control" placeholder="Descripción"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row m-b-0">
+                        <div class="offset-sm-3 col-sm-9">
+                            <button type="submit" class="btn btn-success waves-effect waves-light" (click)="guardarProducto()">Guardar</button>
+                            <!-- <button type="submit"
+                            [disabled]="periodoForm.invalid"
+                            class="btn btn-success waves-effect waves-light"><i class="fa fa-save"></i> Guardar</button> -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+<!--    <div *ngIf="imagen" class=" col-md-6 form-group row">-->
+
+<!--         <img class="img-fluid" src="{{productoSeleccionado.image | imagen:'productos'}}" alt="">-->
+<!--        <label for="exampleInputEmail3" class="col-sm-3 p-2 control-label">Imagen</label>-->
+<!--        <div class="col-sm-9">-->
+<!--            <div class="input-group">-->
+
+<!--                <input type="file" class="form-control" placeholder="Imagen" (change)="( onFileChange($any($event.target).files[0]))">-->
+<!--            </div>-->
+<!--            <button class=" m-3 btn btn-primary" (click)="subirImagen()">Ingresar Imagen</button>-->
+<!--        </div>-->
+
+<!--    </div>-->
+    <!-- <div class="col-md-6 animated fadeIn fast" *ngIf="cursoSeleccionado">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Curso</h4>
+
+
+            </div>
+        </div>
+    </div> -->
+</div>

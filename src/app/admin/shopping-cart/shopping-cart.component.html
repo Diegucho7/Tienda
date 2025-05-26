@@ -1,0 +1,161 @@
+<div class="fondo-shopping-cart container p-1">
+
+    
+    <div class ="container p-4 ">
+        <h5>Carrito de Compras</h5>
+        <li class="list-inline-item anular">Anular lista de compras</li>
+            
+        <hr>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <div class="container">
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="ibox">
+                        <div class="ibox-title">
+                            <span class="pull-right">(<strong>{{productos.length}}</strong>) items</span>
+                            <h5>Items en tu carrito de compras</h5>
+                        </div>
+                        <div *ngFor="let item of productos" class="ibox-content">
+                            <div class="table-responsive">
+                                <table class="table shoping-cart-table">
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <div >
+                                                <img  width="90" src="{{item.image ?? ''| imagen:'productos'}}" alt="">
+                                            </div>
+                                        </td>
+                                        <td class="desc">
+                                            <h3>
+                                                {{item.name}}
+                                           
+                                            </h3>
+                                            <p class="small">
+                                                {{item.description}}
+                                            </p>
+                                            <dl class="small m-b-none">
+                                                <dt>Description lists</dt>
+                                                <dd>A description list is perfect for defining terms.</dd>
+                                            </dl>
+        
+                                            <div class="m-t-sm">
+                                                <!-- <a href="#" class="text-muted"><i class="fa fa-gift"></i> Add gift package</a> -->
+                                                
+                                                <a (click)="eliminarProducto(item.IdCart)"  class="text-muted "><i class="fa fa-trash"></i> Eliminar item</a>
+                                            </div>
+                                        </td>
+        
+                                        <td>
+                                            ${{item.price}}
+                                            <s *ngIf="descuento" class="small text-muted">$230,00</s>
+                                        </td>
+                                        <td width="80">
+                                            <input type="number" min="1"  (change)="updateProduct(item.IdCart, validateQuantity( $any($event.target).value))" class="form-control" placeholder="{{item.quantity}}">
+                                        </td>
+                                        <td>
+                                            <h4>
+                                                ${{ item.price * item.quantity}}
+                                            </h4>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+        
+                        </div>
+                        
+                       
+                        
+                       
+                        <div class="ibox-content">
+
+                            <a [routerLink]="['/user/pagos/',user]">
+                                
+                                <button class="btn btn-primary pull-right"><i class="fa fa fa-shopping-cart"></i> Pagar</button>
+                            </a>
+
+                            <a [routerLink]="['/pages/productos']">
+                                <button class="btn btn-white"><i class="fa fa-arrow-left"></i> Continuar comprando</button>
+
+                            </a>
+        
+                        </div>
+                    </div>
+        
+                </div>
+                <div class="col-md-3">
+                    <div class="ibox">
+                        <div class="ibox-title">
+                            <h5>Total</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <span>
+                                Total
+                            </span>
+                            <h2 class="font-bold">
+                                ${{valor}}
+                            </h2>
+        
+                            <hr>
+                            <span class="text-muted small">
+                                *For United States, France and Germany applicable sales tax will be applied
+                            </span>
+                            <div class="m-t-sm">
+                                <div class="btn-group">
+                                <a [routerLink]="['/user/pagos/',user]" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart"></i> Checkout</a>
+                                <!-- <a [routerLink]="['/user/pagos/',user]" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart"></i> Checkout</a> -->
+                                <a href="#" class="btn btn-white btn-sm"> Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="ibox">
+                        <div class="ibox-title">
+                            <h5>Support</h5>
+                        </div>
+                        <div class="ibox-content text-center">
+                            <h3><i class="fa fa-phone"></i> +593 998 3249 38</h3>
+                            <span class="small">
+                                Por favor contactarse en caso de cualquier necesitad 
+                            </span>
+                        </div>
+                    </div>
+        
+                    <div class="ibox">
+                        <div class="ibox-content">
+        
+                            <p class="font-bold">
+                            Productos que le pueden interesar
+                            </p>
+                            <hr>
+                            <div>
+                                <a href="#" class="product-name"> Product 1</a>
+                                <div class="small m-t-xs">
+                                    Many desktop publishing packages and web page editors now.
+                                </div>
+                                <div class="m-t text-righ">
+        
+                                    <a href="#" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right"></i> </a>
+                                </div>
+                            </div>
+                            <hr>
+                            <div>
+                                <a href="#" class="product-name"> Product 2</a>
+                                <div class="small m-t-xs">
+                                    Many desktop publishing packages and web page editors now.
+                                </div>
+                                <div class="m-t text-righ">
+        
+                                    <a href="#" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right"></i> </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+</div>

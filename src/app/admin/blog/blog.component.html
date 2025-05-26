@@ -1,0 +1,96 @@
+
+<div class="p-4">
+    <a href="#/user">
+
+        <i class="fa-solid fa-arrow-left"></i>
+    </a>
+</div>
+
+<div class="row animated fadeIn fast">
+    <div class="col-12">
+       
+        <div class="alert alert-info text-center"
+        *ngIf="cargando">
+
+            <h4 class="alert-heading">Cargando</h4>
+            <i class="fa fa-spin fa-refresh fa-2x"></i>
+            <p class="mb-0">Por favor espere</p>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="row"
+    *ngIf="!cargando"    
+>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+
+                <div class="row">
+                    <div class="col-8">
+                        <h4 class="card-title">Blogs ({{blogs.length}})</h4>
+                        <h6 class="card-subtitle">Blogs registradas en la aplicación</h6>
+
+                    </div>
+
+                    <div class="col">
+                        <div class="text-right ">
+                            <button 
+                            routerLink="/user/blogs/nuevo"
+                            class="btn btn-primary">
+                            <i class="fa-solid fa-person-chalkboard"></i>
+                                Crear Blog
+                            </button>
+                        </div>
+    
+                    </div>
+                </div>
+
+
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>        
+                                <th>Blogs</th>
+                                <th>Fecha</th>
+                                
+                                <th class=" text-center text-nowrap w100">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                           
+                            <tr *ngFor="let blog of blogs">
+
+                                <td>{{blog.title}}</td>
+                                <td>{{blog.createdAt|date}}</td>
+
+                             
+                                    
+                                <td class="text-nowrap text-center ">
+                                    <a [routerLink]="['/user/blogs',blog.IdBlog]" routerLinkActive="router-link-active"  data-toggle="tooltip" data-original-title="Editar"> <i class="fa fa-pencil text-inverse m-r-10"></i></a>
+                                   
+                                   
+                                    <a class="cursor" data-toggle="tooltip" 
+                                    (click)="deleteBloc(blog.IdBlog)"
+                                    data-original-title="Borrar" [routerLink]="['/user/blogs']"
+                                    > 
+                                    <i class="p-2 fa fa-close text-danger"></i> 
+                                    </a>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <!-- <button class="btn btn-secondary">Anterior</button>
+                &nbsp;
+                <button class="btn btn-secondary">Siguiente</button> -->
+
+            </div>
+        </div>
+    </div>
+</div>

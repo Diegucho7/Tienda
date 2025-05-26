@@ -1,0 +1,75 @@
+
+
+<div class="p-3">
+    <a class="btn btn-success" href="#/user/blogs">Atrás</a>
+</div>
+<div class="row animated fadeIn fast">
+    <div class="col-12">
+       
+        <div class="alert alert-info text-center"
+        *ngIf="cargando">
+
+            <h4 class="alert-heading">Cargando</h4>
+            <i class="fa fa-spin fa-refresh fa-2x"></i>
+            <p class="mb-0">Por favor espere</p>
+
+        </div>
+
+    </div>
+</div>
+<div *ngIf="!cargando" class="row container">
+    
+    
+    
+<form [formGroup]="formBlog">
+
+    <select formControlName="category" class="form-select">
+        <option value="nicho">{{'nicho'|uppercase}}</option>
+        <option value="multimedia">{{'multimedia'|uppercase}}</option>
+        <option value="noticias">{{'noticias'|uppercase}}</option>
+        <option value="negocio">{{'negocio'|uppercase}}</option>
+        <option value="reviews">{{'reviews'|uppercase}}</option>
+        <option value="tecnologia">{{'tecnologia'|uppercase}}</option>
+        <option value="cocina">{{'cocina'|uppercase}}</option>
+        <option value="politica">{{'politica'|uppercase}}</option>
+        <option value="deportes">{{'deportes'|uppercase}}</option>
+    </select>
+
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Título</label>
+        <input formControlName="title" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Título">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Asunto</label>
+        <input formControlName="subject" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Título">
+    </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Contenido</label>
+        <textarea formControlName="description" class=" textAreaBlog form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+      
+      
+      <div class="form-group row m-b-0">
+        <div class="offset-sm-3 col-sm-9">
+            <button type="submit" [disabled]="formBlog.invalid" class="btn btn-success waves-effect waves-light" (click)="saveBlog()">Guardar</button>
+            
+        </div>
+    </div>
+</form>
+
+<div *ngIf="imagen" class="pt-3 col-md-6 form-group row">
+
+    <img src="{{BlogSeleccion.image| imagen:'blogs'}}" alt="">
+
+
+    <label for="exampleInputEmail3" class="col-sm-3 p-2 control-label">Imagen</label>
+    <div class="col-sm-9">
+        <div class="input-group">
+            
+            <input type="file" class="form-control" placeholder="Imagen" (change)="( onFileChange($any($event.target).files[0]))"> 
+        </div>
+        <button class=" m-3 btn btn-primary" (click)="subirImagen()">Ingresar Imagen</button>
+    </div>
+
+</div>
+</div>

@@ -1,0 +1,4 @@
+.textAreaBlog {
+    height: 50vh; /* 50% of the viewport height */
+    width: 100%; /* 80% of the parent container width */
+  }
