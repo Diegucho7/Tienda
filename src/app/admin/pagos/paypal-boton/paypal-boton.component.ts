@@ -1,5 +1,5 @@
 import { Component, ElementRef } from '@angular/core';
-import {  ButtonRenderer} from 'paypal-checkout-components';
+// import {  ButtonRenderer} from 'paypal-checkout-components';
 
 @Component({
   selector: 'app-paypal-boton',

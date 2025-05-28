@@ -90,7 +90,7 @@ export class UsuariosService {
 
     validarToken(): Observable<boolean> {
 
-
+      console.log(this.token)
       return this.http.get(`${ base_url }/validToken`, {
         headers: {
           'Authorization': `Bearer ${this.token}`

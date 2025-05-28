@@ -10,10 +10,10 @@ import { v4 as uuidv4 } from 'uuid';
 
 import {
   IPayPalConfig,
-  ICreateOrderRequest 
+  ICreateOrderRequest
 } from 'ngx-paypal';
 
-import {  Button, ButtonRenderer, ButtonsRenderer} from 'paypal-checkout-components';
+// import {  Button, ButtonRenderer, ButtonsRenderer} from 'paypal-checkout-components';
 import { Orden } from '../../model/order.model';
 
 @Component({
@@ -37,23 +37,23 @@ export class PagosComponent implements OnInit {
 
 
     public descuento: boolean = false
-    public total: number[] = [];    
+    public total: number[] = [];
     public totalFinal: number = 0
     public totalPagar: Total[] = [];
     public valor?: number;
     public orden?: Orden;
 
-  constructor( 
+  constructor(
               private activateRoute:ActivatedRoute,
               private shoppingCartService: ShoppingCartService,
               private UsuariosService: UsuariosService,
               private elementRef: ElementRef
-  ) { 
+  ) {
 
   }
-  
 
-  
+
+
   ngOnInit(): void {
     this.initConfig();
 
@@ -62,14 +62,14 @@ export class PagosComponent implements OnInit {
     // this.apellido =this.UsuariosService.usuario?.lastname
     // this.email =this.UsuariosService.usuario?.email
     this.activateRoute.params
-    .subscribe( ({id}) => 
-        
-      
+    .subscribe( ({id}) =>
+
+
         this.shoppingCartService.getShoppingCartId(id).subscribe(productos => {
 
           // console.log(productos);
         this.productos = productos.shoppingCart;
-     
+
                }));
 
       this.cargarTotal();
@@ -80,14 +80,14 @@ export class PagosComponent implements OnInit {
     let factura: string;
     factura = uuidv4();
     // console.log(this.totalPagar);
-    this.shoppingCartService.crearOrden(1,this.productos, this.totalPagar, factura, this.user); 
+    this.shoppingCartService.crearOrden(1,this.productos, this.totalPagar, factura, this.user);
 
   }
 
   cargarTotal(){
     this.activateRoute.params
-    .subscribe( ({id}) => 
-           
+    .subscribe( ({id}) =>
+
         this.shoppingCartService.getShoppingTotalCartId(id).subscribe(total => {
         this.totalPagar = total.orders;
         this.valor = total.total
@@ -113,7 +113,7 @@ export class PagosComponent implements OnInit {
                         }
                     }
                 },
-               
+
                 items: this.productos.map((producto)=>{
 
                   return {
@@ -125,7 +125,7 @@ export class PagosComponent implements OnInit {
                         value: producto.price.toString(),
                     },
                     }
-                }) 
+                })
                 // [{
                 //     name: 'Enterprise Subscription',
                 //     quantity: '1',
@@ -146,7 +146,7 @@ export class PagosComponent implements OnInit {
         },
         onApprove: (data, actions) => {
             console.log('onApprove - transaction was approved, but not authorized', data, actions);
-            actions.order.get().then((details:any) => {     
+            actions.order.get().then((details:any) => {
                 console.log('onApprove - you can get full order details inside onApprove: ', details);
             });
             this.crearOrden();
@@ -191,15 +191,15 @@ export class PagosComponent implements OnInit {
       if (result.isConfirmed) {
 
 
-        const buttonRenderer: ButtonRenderer = {
-          render: (options, selector) => {
-            // Aquí puedes utilizar los campos del objeto options
-            console.log(options.env);
-            console.log(options.style);
-            console.log(options.locale);
-            // ...
-          }
-        };
+        // const buttonRenderer: ButtonRenderer = {
+        //   render: (options, selector) => {
+        //     // Aquí puedes utilizar los campos del objeto options
+        //     console.log(options.env);
+        //     console.log(options.style);
+        //     console.log(options.locale);
+        //     // ...
+        //   }
+        // };
 
         // buttonRenderer.render({
         //   env: 'localhost' ,
@@ -218,13 +218,13 @@ export class PagosComponent implements OnInit {
     //       // this.totalFinal = resp.total
     //       console.log(this.totalFinal);
     //       this.descuento = true
-        
+
     // })
    } })
   }
 
-  
-  
+
+
   // Llamar a la función render
-  
+
 }

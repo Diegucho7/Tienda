@@ -5,6 +5,8 @@ import { PagesRoutingModule } from './pages/pages.routing';
 import { PagesComponent } from './pages/pages.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthRoutingModule } from './auth/auth.routing';
+import {AdminModule} from './admin/admin.module';
+import {AdminRoutingModule} from './admin/admin.routing';
 
 const routes: Routes = [
   { path : '', redirectTo:'/pages', pathMatch:'full'},
@@ -24,7 +26,8 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true }),
     PagesRoutingModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    AdminRoutingModule
   ],
   exports: [RouterModule]
 })

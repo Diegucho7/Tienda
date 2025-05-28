@@ -16,3 +16,5 @@ import {Person} from '../app/model/product.model';
     articulos: ArticuloSeleccionado[];
   }
 
+
+
