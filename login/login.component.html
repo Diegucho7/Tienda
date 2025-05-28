@@ -1,0 +1,35 @@
+<div class="card-container card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Login</h5>
+
+      <img class="card-img-top w-25 mb-2" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Login">
+
+      <form [formGroup]="myForm" action="">
+
+
+
+        <h6 class="card-subtitle mb-2 text-body-secondary">Email</h6>
+
+        <input formControlName="Username" class="form-control" type="text">
+
+        <br>
+        <h6 class="card-subtitle mb-2 text-body-secondary">Contraseña</h6>
+
+        <input formControlName="Password" class="form-control" type="password">
+
+
+
+      </form>
+
+      <br>
+
+
+      <button type="submit" (click)="login()" class="btn btn-primary">
+        Login
+      </button>
+      <br>
+      <a href="#/register" class="pt-4 d-flex card-link">No tengo cuenta</a>
+      <a href="#/restore-Password" class="pt-4 d-flex card-link">Olvide mi contraseña</a>
+
+    </div>
+    </div>

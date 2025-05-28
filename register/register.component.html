@@ -1,0 +1,59 @@
+
+
+
+    <div class="card-container card" style="width: 18rem;">
+      <form [formGroup]="register" action="">
+
+
+
+
+        <div class="card-body">
+          <h5 class="card-title">Registro</h5>
+
+          <img class="card-img-top w-25 mb-2" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Login">
+
+          <h6 class="card-subtitle mb-2 text-body-secondary text-start">Nombre</h6>
+
+          <input formControlName="name" class="form-control" type="text">
+
+
+          <h6 class="card-subtitle mb-2 text-body-secondary text-start">Apellido</h6>
+
+          <input formControlName="lastname" class="form-control" type="text">
+
+          <h6 class="card-subtitle mb-2 text-body-secondary text-start">Email</h6>
+
+          <input formControlName="email" class="form-control" type="text">
+
+          <br>
+          <h6 class="card-subtitle mb-2 text-body-secondary text-start">Contraseña</h6>
+          <input formControlName="password" class="form-control" type="password">
+          <h6 class="card-subtitle mb-2 text-body-secondary text-start">Repita Contraseña</h6>
+
+          <input formControlName="password2" class="form-control" type="password">
+
+
+          <br>
+          <div class="row">
+            <div class="col text-danger">
+                <p *ngIf="campoNoValido('name')">El nombre es obligatorio</p>
+                <p *ngIf="campoNoValido('lastname')">El apellido es obligatorio</p>
+                <p *ngIf="campoNoValido('email')">El email es obligatorio</p>
+                <p *ngIf="contrasenasNoValidas('password')">Las contraseñas deben ser iguales</p>
+            </div>
+        </div>
+
+          <br>
+          <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="#" class="card-link">Card link</a> -->
+          <button type="submit" (click)="registrar()" class="btn btn-primary">
+            Registrar
+          </button>
+           <br>
+          <!-- <a href="#/login" class="pt-4 d-flex card-link"> <----</a> -->
+        </div>
+
+
+      </form>
+      </div>
+

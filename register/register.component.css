@@ -1,0 +1,11 @@
+.card-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .background-register{
+    background: linear-gradient(to right, #5f889b, #815f9b);
+  }
