@@ -1,0 +1,52 @@
+<div class="p-3">
+  <a class="btn btn-success" href="#/user/">Atrás</a>
+</div>
+<div class="container pt-3">
+
+<div class="container mt-4">
+  <h2 class="mb-4">Listado de Órdenes</h2>
+
+  <table class="table table-striped table-hover">
+    <thead class="table-dark">
+    <tr>
+      <th>ID Orden</th>
+      <th>Cliente</th>
+      <th>Número Identificación</th>
+      <th>Documento</th>
+      <th>Subtotal</th>
+      <th>IVA</th>
+      <th>IGV</th>
+      <th>Total</th>
+      <th style="width: 100px;">Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let order of orders">
+      <td>{{ order.id }}</td>
+      <td>{{ order.primerNombre }} {{ order.segundoNombre }} {{ order.apellidoPaterno }} {{ order.apellidoMaterno }}</td>
+      <td>{{ order.numberIdentification }}</td>
+      <td>{{ order.numDocument }}</td>
+      <td>{{ order.baseTax | currency:'USD':'symbol' }}</td>
+      <td>{{ order.valueIva | currency:'USD':'symbol' }}</td>
+      <td>{{ order.valueIgv | currency:'USD':'symbol' }}</td>
+      <td>{{ (order.baseTax + order.valueIva + order.valueIgv) | currency:'USD':'symbol' }}</td>
+      <td>
+        <a [routerLink]="['/user/edit-orderRequest', order.id]" class="">
+          <i class="fa-solid fa-pen text-dark cursor-pointer" title="Editar"></i>
+        </a>
+        <a  class="p-2">
+          <i class="fa-solid fa-xmark text-dark cursor-pointer"
+             title="Eliminar"></i></a>
+        <a   (click)="generatePDF(order)" class="p-2">
+          <i class="fa-solid fa-file-pdf text-dark cursor-pointer"
+             title="pdf"></i></a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="orders.length === 0" class="alert alert-info">
+    No hay órdenes para mostrar.
+  </div>
+</div>
+</div>
