@@ -25,7 +25,7 @@ export class RegisterComponent {
     private router: Router
   ) {
     this.register = this.fb.group({
-      username: ['', Validators.required],
+      // username: ['', Validators.required],
       name: ['', Validators.required],
       lastname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -97,18 +97,18 @@ export class RegisterComponent {
 
       // Armás el objeto a enviar
       const userData = {
-        username: formValues.username,
+        username: formValues.email,
         name: formValues.name,
         lastName: formValues.lastname,
         email: formValues.email,
         password: formValues.password,
         fullname: `${formValues.name} ${formValues.lastname}`
       };
-
+      console.log(userData);
       //Realiza el posteo
       this.usuarioService.registerUser(userData)
         .subscribe(resp => {
-          Swal.fire('Éxito', resp.msg || 'Registro correcto.', 'success')
+          Swal.fire('Éxito', "Registro exitoso"|| 'Registro correcto.', 'success')
             .then(() => {
               this.route.navigateByUrl('/login');
             });
