@@ -1,7 +1,9 @@
-namespace DefaultNamespace;
+import {Person} from '../app/model/product.model';
 
-public interface orderSales
-{
+// namespace DefaultNamespace;
+
+
+
   export interface ArticuloSeleccionado {
     id: number;
     name: string;
@@ -13,4 +15,4 @@ public interface orderSales
     cliente: Person;
     articulos: ArticuloSeleccionado[];
   }
-}
+
