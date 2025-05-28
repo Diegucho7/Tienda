@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DatosComponent } from '../../../database/datos/datos.component';
+import {Router} from '@angular/router';
+import {ProductsService} from '../../services/products.service';
+import {CategoryService} from '../../services/category.service';
 
 interface tortas {
     nombre: String,
@@ -19,36 +22,26 @@ interface tortas {
 
 
 export class ProductosComponent implements OnInit {
-  
-  precioRange = 50; // valor inicial
-
-  public productoFiltrado: tortas[] = [];
-  public categoriaForm! : FormGroup 
-  
-  
-  constructor(  private fb: FormBuilder,
-                public data: DatosComponent
-  ){
-
-    this.productoFiltrado = this.data.productos;
-
-    this.categoriaForm = this.fb.group({
-      categoria: ['']
-    })
-
-  }
+  public productos: any;
+  public Articulos: any;
+  constructor(
+    private router: Router,
+    private productsService: ProductsService,
+    private categoryServive: CategoryService
+  ){  }
   ngOnInit(): void {
-    this.productoFiltrado = this.data.productos;
+
+
+
+
+    this.productsService.getAllItems()
+      .subscribe(items => {
+        this.Articulos = items;
+
+      })
+
 
   }
-  
-    mostrarcategoria (categoria: string){
-  
-      this.productoFiltrado = this.data.productos.filter((producto) => producto.categoria === categoria);
 
-    }
 
-   
-
-  
 }

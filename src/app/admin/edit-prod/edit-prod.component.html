@@ -36,9 +36,11 @@
         <td>{{item.stock}}</td>
         <td>{{item.description}}</td>
         <td>
-          <a href="['/user/productPage',item.id]" class=""><i
-              class="fa-solid fa-pen text-dark cursor-pointer" title="Editar"></i></a>
-          <a (click)="deleteProduct(item.id)" class="p-2"><i class="fa-solid fa-xmark text-dark cursor-pointer"
+          <a href="['/user/productPage',item.id]" class="">
+            <i class="fa-solid fa-pen text-dark cursor-pointer" title="Editar"></i>
+          </a>
+          <a (click)="deleteProduct(item.id)" class="p-2">
+            <i class="fa-solid fa-xmark text-dark cursor-pointer"
               title="Eliminar"></i></a>
 
         </td>
