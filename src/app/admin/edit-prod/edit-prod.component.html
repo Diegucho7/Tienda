@@ -36,7 +36,7 @@
         <td>{{item.stock}}</td>
         <td>{{item.description}}</td>
         <td>
-          <a href="['/user/productPage',item.id]" class="">
+          <a [routerLink]="['/user/productPage', item.id]" class="">
             <i class="fa-solid fa-pen text-dark cursor-pointer" title="Editar"></i>
           </a>
           <a (click)="deleteProduct(item.id)" class="p-2">
