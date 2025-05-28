@@ -43,7 +43,7 @@ export class ProductsService {
   getProducts(desde: number = 0): Observable<{ products: Productos[], total: number }> {
 
 
-    const url = `${base_url}/item/1`;
+    const url = `${base_url}/item/`;
     return this.http.get<{ ok: boolean, products: Productos[], total: number }>
 
 
@@ -53,9 +53,6 @@ export class ProductsService {
       .pipe(
         map((resp: { ok: boolean, products: Productos[], total: number }) => resp)
       );
-
-
-
   }
 
 

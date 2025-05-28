@@ -90,7 +90,6 @@ export class UsuariosService {
 
     validarToken(): Observable<boolean> {
 
-      console.log(this.token)
       return this.http.get(`${ base_url }/validToken`, {
         headers: {
           'Authorization': `Bearer ${this.token}`
@@ -134,7 +133,6 @@ export class UsuariosService {
         tap((resp:any) =>{
 
           console.log('restorePassword', resp);
-        console.log(resp);
         }
           )
             )
@@ -142,15 +140,15 @@ export class UsuariosService {
 
   registerUser(formData: { username: any; lastName: any; email: any; password: any; fullname: string })
       {
-      return this.http.post(`${ base_url }/Register/`,formData )
-      .pipe(
-        tap((resp:any) =>{
+      return this.http.post(`${ base_url }/Register`,formData )
+      // .pipe(
+        // tap((resp:any) =>{
+        //
+        //   this.guardarLocalStorage(resp.token);
+        // }
 
-          this.guardarLocalStorage(resp.token);
-        }
-
-        )
-      )
+        // )
+      // )
 
     }
 

@@ -4,63 +4,52 @@
 <div  id="carouselExampleFade" class="carousel slide carousel-dark carousel-container">
     <div class="carousel-inner">
       <div *ngFor="let item of corrousel"  class="carousel-item active ">
-     
+
         <img src= {{item.image}}  class="d-block w-100 imagen" alt="...">
         <div class="carousel-caption d-none d-md-block ">
-          <h5>{{item.titulo}}</h5>
-          <p>{{item.subtitulo}}</p>
+
         </div>
       </div>
-      
+
     </div>
     <button id = "prevButton" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
-    
+
     <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
-    </button> 
+    </button>
   </div>
   <app-card></app-card>
 
   <hr class="featurette-divider">
 
   <div class=" text-end pb-5 container featurette">
-  <h1>Nuestros Principios</h1>
+    <h1>Nuestros Principios</h1>
   </div>
 
-  <div class="container marketing">
+<div class="container marketing">
 
-    <!-- Three columns of text below the carousel -->
-    <div class="row">
-      <div class="col-lg-4">
-        <!-- <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="assets/reposteria.jpg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title> -->
-        <h2 class="fw-normal">Salud</h2>
-        <p>La repostería saludable es una opción que busca combinar la dulzura con la nutrición, utilizando ingredientes naturales y minimizando el uso de azúcares añadidos. De esta manera, se pueden disfrutar de postres deliciosos y saludables que no solo satisfacen el paladar, sino que también aportan beneficios para el cuerpo.
+  <!-- Three columns of text below the carousel -->
+  <div class="row">
+    <div class="col-lg-4">
+      <h2 class="fw-normal">Puntualidad</h2>
+      <p>La puntualidad es esencial en el sector de transporte y logística. Nos comprometemos a cumplir con los tiempos de entrega acordados, entendiendo que cada minuto cuenta para nuestros clientes. Nuestra eficiencia en las rutas y procesos asegura que la carga llegue siempre a tiempo.</p>
+    </div><!-- /.col-lg-4 -->
 
+    <div class="col-lg-4">
+      <h2 class="fw-normal">Seguridad</h2>
+      <p>Transportar bienes de manera segura es nuestra máxima prioridad. Implementamos protocolos rigurosos, tecnologías de rastreo y un personal altamente capacitado para garantizar que cada envío llegue en perfectas condiciones, sin riesgos ni imprevistos.</p>
+    </div><!-- /.col-lg-4 -->
 
-
-
-        </p>
-        <!-- <p><a class="btn btn-secondary" href="#">View details »</a></p> -->
-      </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4">
-        <!-- <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg> -->
-        <h2 class="fw-normal">Calidad</h2>
-        <p>La calidad en la repostería se refleja en la calidad de los ingredientes utilizados, la atención al detalle en la preparación y presentación, y el compromiso con la salud y el bienestar. Un postre de alta calidad puede ser una opción saludable y deliciosa, donde la calidad de los ingredientes y la atención al detalle en la preparación se combinan para crear una experiencia culinaria única y gratificante.</p>
-        <!-- <p><a class="btn btn-secondary" href="#">View details »</a></p> -->
-      </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4">
-        <!-- <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg> -->
-        <h2 class="fw-normal">Sabor</h2>
-        <p>Estamos en la busqueda de combinar sabores y texturas para crear experiencias culinarias únicas y deliciosas. Un postre bien elaborado puede transportar a quien lo prueba a un mundo de sensaciones y emociones, donde el sabor es el protagonista principal.</p>
-        <!-- <p><a class="btn btn-secondary" href="#">View details »</a></p> -->
-      </div><!-- /.col-lg-4 -->
-    </div><!-- /.row -->
-
-
+    <div class="col-lg-4">
+      <h2 class="fw-normal">Compromiso</h2>
+      <p>Nos mueve un fuerte compromiso con nuestros clientes. Nos adaptamos a sus necesidades logísticas, ofreciendo soluciones flexibles y personalizadas. Nuestro equipo trabaja con pasión y responsabilidad para garantizar un servicio confiable y de calidad en cada trayecto.</p>
+    </div><!-- /.col-lg-4 -->
+  </div><!-- /.row -->
+</div>
     <!-- START THE FEATURETTES -->
 
 
@@ -101,10 +90,8 @@
       <div class="col-md-5">
         <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
       </div>
-    </div>
+
 
     <hr class="featurette-divider">
-
-    <!-- /END THE FEATURETTES -->
 
   </div>

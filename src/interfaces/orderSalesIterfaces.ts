@@ -12,7 +12,7 @@ import {Person} from '../app/model/product.model';
   }
 
   export interface Venta {
-    cliente: Person;
+    ClienteId: number;
     articulos: ArticuloSeleccionado[];
   }
 
