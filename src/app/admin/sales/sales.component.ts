@@ -81,6 +81,9 @@ export class SalesComponent implements OnInit {
 
         this.Persons = resp.person;
       });
+
+
+
   }
 
 
@@ -123,16 +126,7 @@ export class SalesComponent implements OnInit {
       });
     console.log('Venta lista para enviar:', venta);
 
-    // this.orderRequestService.CreateOrder(venta)
-    //   .subscribe((resp: any) => {
-    //     // console.log(resp);
-    //     Swal.fire('Creado el Item', `La venta ha sido creado correctamente`, 'success');
-    //
-    //     // this.router.navigateByUrl(`/user/productPage/${resp.producto.map((p: Product) => p.IdProduct)[0]}`);
-    //     this.router.navigateByUrl(`/user/productPage/${resp.item.id}`);
-    //   }, error => {
-    //     Swal.fire('Error', `Ha ocurrido un error al actualizar el producto`, 'error');
-    //   });
+
   }
     filteredPersons(): Person[] {
       if (!this.searchTerm || this.searchTerm.trim() === '') {

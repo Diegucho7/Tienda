@@ -4,7 +4,8 @@ import {Item, Product} from '../model/product.model';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {DetalleOrden, Venta} from '../../interfaces/orderSalesIterfaces';
+import {DetalleOrden, OrderWithClient, Venta} from '../../interfaces/orderSalesIterfaces';
+import {Observable} from 'rxjs';
 
 const base_url = environment.base_url;
 @Injectable({
@@ -79,4 +80,8 @@ export class OrderRequestServices {
     }).filter(item => item !== null);
   }
 
+  getOrders(): Observable<any> {
+    const url = `${base_url}/OrderRequest`;
+    return this.http.get<any>(url); // tipo any para aceptar la estructura actual
+  }
 }

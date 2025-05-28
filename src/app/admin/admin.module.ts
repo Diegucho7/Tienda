@@ -21,6 +21,8 @@ import { NgxPayPalModule } from 'ngx-paypal';
 import { ReportsComponent } from './reports/reports.component';
 import { SalesComponent } from './sales/sales.component';
 import { DiscountComponent } from './sales/discount/discount.component';
+import { ReportSalesComponent } from './report-sales/report-sales.component';
+import { EditOrderRequestComponent } from './edit-order-request/edit-order-request.component';
 
 
 
@@ -39,7 +41,9 @@ import { DiscountComponent } from './sales/discount/discount.component';
     PaypalBotonComponent,
     ReportsComponent,
     SalesComponent,
-    DiscountComponent
+    DiscountComponent,
+    ReportSalesComponent,
+    EditOrderRequestComponent
     
     
   ],

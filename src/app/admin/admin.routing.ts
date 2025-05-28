@@ -14,6 +14,8 @@ import { adminGuard } from '../guards/admin.guard';
 import { PagosComponent } from './pagos/pagos.component';
 import {ReportsComponent} from './reports/reports.component';
 import {SalesComponent} from './sales/sales.component';
+import {ReportSalesComponent} from './report-sales/report-sales.component';
+import {EditOrderRequestComponent} from './edit-order-request/edit-order-request.component';
 
 
 
@@ -36,6 +38,8 @@ const routes: Routes = [
           { path: 'blogs/:id', component: BlogIdComponent },
           { path: 'shoppingcart/:id', component: ShoppingCartComponent },
           { path: 'pagos/:id', component: PagosComponent },
+          { path: 'report-sales', component: ReportSalesComponent },
+          { path: 'edit-orderRequest/:id', component: EditOrderRequestComponent },
           // { path: 'dashboard', component:DashboardComponent },
         ]
       },
