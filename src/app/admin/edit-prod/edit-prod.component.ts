@@ -113,13 +113,6 @@ export class EditProdComponent implements OnInit {
       }
     });
 
-
-
-
-    //  .subscribe(resp =>{
-
-
-    //     })
   }
 
 }

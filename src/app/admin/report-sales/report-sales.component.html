@@ -34,10 +34,10 @@
         <a [routerLink]="['/user/edit-orderRequest', order.id]" class="">
           <i class="fa-solid fa-pen text-dark cursor-pointer" title="Editar"></i>
         </a>
-        <a  class="p-2">
+        <a (click)=" deleteProduct(order.id)" class="p-2">
           <i class="fa-solid fa-xmark text-dark cursor-pointer"
              title="Eliminar"></i></a>
-        <a   (click)="generatePDF(order)" class="p-2">
+        <a   (click)="generatePDF(order.id)" class="p-2">
           <i class="fa-solid fa-file-pdf text-dark cursor-pointer"
              title="pdf"></i></a>
       </td>

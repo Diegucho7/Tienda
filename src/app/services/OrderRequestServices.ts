@@ -80,6 +80,13 @@ export class OrderRequestServices {
     }).filter(item => item !== null);
   }
 
+
+  UpdateOrder(id: number, payload: DetalleOrden[]) {
+    const url = `${base_url}/OrderRequest/${id}`;
+    return this.http.put<{ IsSuccess: boolean; Mssg: string }>(url,payload, this.headers);
+  }
+
+
   getOrders(): Observable<any> {
     const url = `${base_url}/OrderRequest`;
     return this.http.get<any>(url); // tipo any para aceptar la estructura actual
@@ -88,4 +95,11 @@ export class OrderRequestServices {
   getOrderById(id: number): Observable<OrderRequestWithClientDto> {
     return this.http.get<OrderRequestWithClientDto>(`${base_url}/OrderRequest/${id}`);
   }
+
+
+  deleteOrder(id: number): Observable<{ IsSuccess: boolean; Mssg: string }> {
+    return this.http.delete<{ IsSuccess: boolean; Mssg: string }>(`${base_url}/OrderRequest/${id}`);
+  }
+
+
 }

@@ -108,33 +108,7 @@ export class ProductsComponent implements OnInit {
   })
 
   }
-  subirImagen() {
 
-    // const id = this.modalImagenService.id;
-    // const tipo = this.modalImagenService.tipo;
-
-    if (this.imagenSubir){
-
-      this.fileServices
-      .actualizarFoto(this.imagenSubir, "productos", this.productoSeleccionado.IdProduct)
-      .then( img =>{
-        Swal.fire('Guardado', 'Cambios fueron guardados','success');
-        // this.fileServices.nuevaImagen.emit(img);
-        // this.cerrarModal();
-
-      }).catch (err=>{
-        console.log(err);
-        Swal.fire('Error', err.error.msg,'error')
-
-      })
-    }
-
-  }
-
-  onFileChange(file: File) {
-    this.imagenSubir = file;
-
-    }
 
   guardarProducto() {
     this.uid = this.usuarioService.uid;

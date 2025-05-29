@@ -61,9 +61,6 @@ export class EditOrderRequestComponent implements OnInit {
       items: this.fb.array([])
     });
 
-
-
-    // Cargar artículos
     this.productsService.getAllItems().subscribe(items => {
       this.Articulos = items.map(item => ({
         ...item,
@@ -89,7 +86,6 @@ export class EditOrderRequestComponent implements OnInit {
       });
     });
 
-    // Cargar personas para búsqueda
     this.personService.getPersons().subscribe(resp => {
       this.Persons = resp.person;
     });
@@ -102,10 +98,8 @@ export class EditOrderRequestComponent implements OnInit {
         this.order = data;
         this.items.clear();
 
-        // Guardar ids de artículos ya seleccionados en la orden
         const orderedItemIds = data.items.map(i => i.item_id);
 
-        // Llenar artículos que ya vienen en la orden
         data.items.forEach(item => {
           this.items.push(this.fb.group({
             id: [item.item_id],
@@ -118,10 +112,8 @@ export class EditOrderRequestComponent implements OnInit {
           }));
         });
 
-        // Ahora cargar todos los artículos del backend
         this.productsService.getAllItems().subscribe(items => {
           items.forEach((item: any) => {
-            // Si el artículo NO está en la orden, lo añadimos como no seleccionado
             if (!orderedItemIds.includes(item.id)) {
               this.items.push(this.fb.group({
                 id: [item.id],
@@ -136,7 +128,6 @@ export class EditOrderRequestComponent implements OnInit {
           });
         });
 
-        // Autollenar persona
         this.selectedPerson = {
           id: data.idClient,
           primerNombre: data.primerNombre || '',
@@ -158,35 +149,8 @@ export class EditOrderRequestComponent implements OnInit {
       return;
     }
 
-    const selectedItems: ArticuloSeleccionado[] = this.items.controls
-      .filter(control => control.get('selected')?.value)
-      .map(control => ({
-        id: control.get('id')?.value,
-        name: control.get('name')?.value,
-        stock: control.get('stock')?.value,
-        quantity: control.get('quantity')?.value,
-        discount: control.get('discount')?.value,
-        price: control.get('price')?.value
-      }));
-    if (selectedItems.length === 0) {
-      alert('Debe seleccionar al menos un artículo.');
-      return;
-    }
-    const venta: Venta = {
-      ClienteId: this.selectedPerson.id,
-      articulos: selectedItems
-    };
 
-    const payload = this.transformarVenta(venta, selectedItems);
-    this.orderRequestService.CreateOrder(payload)
-      .subscribe((resp: any) => {
-        Swal.fire('Orden creada', resp.Mssg, 'success');
-        this.router.navigateByUrl(`/user/productPage/${resp.item?.id || ''}`);
-      }, error => {
-        Swal.fire('Error', 'No se pudo crear la orden', 'error');
-      });
-    console.log('Venta lista para enviar:', venta);
-
+    this.onUpdateOrder();
 
   }
 
@@ -235,6 +199,54 @@ export class EditOrderRequestComponent implements OnInit {
         id_client: venta.ClienteId
       };
     }).filter(item => item !== null);
+  }
+
+  onUpdateOrder() {
+    if (!this.selectedPerson) {
+      alert('Debe seleccionar una persona.');
+      return;
+    }
+
+    const selectedItems = this.items.controls
+      .filter(c => c.get('selected')?.value)
+      .map(c => ({
+        id: c.get('id')?.value,
+        name: c.get('name')?.value,
+        stock: c.get('stock')?.value,
+        quantity: c.get('quantity')?.value,
+        discount: c.get('discount')?.value,
+        price: c.get('price')?.value
+      }));
+
+    if (selectedItems.length === 0) {
+      alert('Debe seleccionar al menos un artículo.');
+      return;
+    }
+
+    const venta: Venta = {
+      ClienteId: this.selectedPerson.id,
+      articulos: selectedItems
+    };
+
+    const payload = this.transformarVenta(venta, selectedItems);
+
+    // Aquí el ID de la orden a editar
+    const orderId = this.order?.id;
+
+    if (!orderId) {
+      alert("ID de la orden no válido.");
+      return;
+    }
+
+    this.orderRequestService.UpdateOrder(orderId, payload).subscribe({
+      next: (resp) => {
+        Swal.fire('Éxito', resp.Mssg, 'success');
+        this.router.navigateByUrl(`/user/report-sales`);
+      },
+      error: () => {
+        Swal.fire('Error', 'No se pudo actualizar la orden', 'error');
+      }
+    });
   }
 
 }

@@ -53,7 +53,6 @@ export class SalesComponent implements OnInit {
           price: item.price,
           selected: false
         }));
-
         const formArray = this.articulosForm.get('items') as FormArray;
         this.Articulos.forEach((item: any) => {
           formArray.push(this.fb.group({
@@ -68,25 +67,16 @@ export class SalesComponent implements OnInit {
           }));
         });
       });
-
     // Inicializar el formulario con un FormArray vacío
     this.articulosForm = this.fb.group({
       items: this.fb.array([])
     });
-
     // Cargar las personas
     this.personService.getPersons()
       .subscribe(resp => {
-
-
         this.Persons = resp.person;
       });
-
-
-
   }
-
-
   get items(): FormArray {
     return this.articulosForm.get('items') as FormArray;
   }
@@ -115,26 +105,20 @@ export class SalesComponent implements OnInit {
       ClienteId: this.selectedPerson.id,
       articulos: selectedItems
     };
-
     const payload = this.transformarVenta(venta, selectedItems);
     this.orderRequestService.CreateOrder(payload)
       .subscribe((resp: any) => {
         Swal.fire('Orden creada', resp.Mssg, 'success');
-        this.router.navigateByUrl(`/user/productPage/${resp.item?.id || ''}`);
+        this.router.navigateByUrl(`/user/edit-orderRequest/${resp.item?.id || ''}`);
       }, error => {
         Swal.fire('Error', 'No se pudo crear la orden', 'error');
       });
-    console.log('Venta lista para enviar:', venta);
-
-
   }
     filteredPersons(): Person[] {
       if (!this.searchTerm || this.searchTerm.trim() === '') {
         return this.Persons.slice(0, 3);
       }
-
       const term = this.searchTerm.toLowerCase();
-
       return this.Persons
         .filter(p =>
           p.numberIdentification.toLowerCase().includes(term) ||
@@ -142,7 +126,6 @@ export class SalesComponent implements OnInit {
         )
         .slice(0, 3);
     }
-
   transformarVenta(venta: Venta, productos: ArticuloSeleccionado[]): any[] {
     return venta.articulos.map(articulo => {
       const producto = productos.find(p => p.id === articulo.id);
@@ -150,7 +133,7 @@ export class SalesComponent implements OnInit {
 
       const price = producto.price;
       const quantity = articulo.quantity;
-      const discount_percent = 0.1;
+      const discount_percent = 0.1; // 10% de descuento fijo (ajusta si necesitas)
       const discount_value = price * quantity * discount_percent;
       const subtotal_before_tax = price * quantity - discount_value;
 
@@ -159,6 +142,14 @@ export class SalesComponent implements OnInit {
       const iva_value = subtotal_before_tax * iva;
       const igv_value = subtotal_before_tax * igv;
 
+      const net_subtotal = subtotal_before_tax;
+      const totalIva = iva_value;
+      const totalIgv = igv_value;
+      const baseTax = subtotal_before_tax;
+      const discount = discount_value;
+      const grossSubtotal = price * quantity;
+      const valueIva = iva_value;
+      const valueIgv = igv_value;
       const total = subtotal_before_tax + iva_value + igv_value;
 
       return {
@@ -173,15 +164,15 @@ export class SalesComponent implements OnInit {
         iva_value,
         igv,
         igv_value,
-        net_subtotal: subtotal_before_tax,
-        totalIva: iva_value,
-        totalIgv: igv_value,
-        id_state: 1,
-        baseTax: subtotal_before_tax,
-        discount: discount_value,
-        grossSubtotal: price * quantity,
-        valueIva: iva_value,
-        valueIgv: igv_value,
+        net_subtotal,
+        totalIva,
+        totalIgv,
+        id_state: 1,          // Valor fijo, ajusta si necesitas otro
+        baseTax,
+        discount,
+        grossSubtotal,
+        valueIva,
+        valueIgv,
         total,
         id_client: venta.ClienteId
       };
