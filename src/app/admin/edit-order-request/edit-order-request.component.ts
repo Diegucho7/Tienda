@@ -163,8 +163,9 @@ export class EditOrderRequestComponent implements OnInit {
 
       const price = producto.price;
       const quantity = articulo.quantity;
-      const discount_percent = 0.1;
-      const discount_value = price * quantity * discount_percent;
+      const discount = producto.discount ?? 0;
+      const discount_percent = discount > 0 ? discount / 100 : 0;
+      const discount_value = discount_percent > 0 ? price * quantity * discount_percent : 0;
       const subtotal_before_tax = price * quantity - discount_value;
 
       const iva = 0.12;
@@ -172,6 +173,13 @@ export class EditOrderRequestComponent implements OnInit {
       const iva_value = subtotal_before_tax * iva;
       const igv_value = subtotal_before_tax * igv;
 
+      const net_subtotal = subtotal_before_tax ;
+      const totalIva = iva_value;
+      const totalIgv = igv_value;
+      const baseTax = subtotal_before_tax;
+      const grossSubtotal = (price * quantity);
+      const valueIva = iva_value;
+      const valueIgv = igv_value;
       const total = subtotal_before_tax + iva_value + igv_value;
 
       return {
@@ -186,15 +194,15 @@ export class EditOrderRequestComponent implements OnInit {
         iva_value,
         igv,
         igv_value,
-        net_subtotal: subtotal_before_tax,
-        totalIva: iva_value,
-        totalIgv: igv_value,
+        net_subtotal,
+        totalIva,
+        totalIgv,
         id_state: 1,
-        baseTax: subtotal_before_tax,
-        discount: discount_value,
-        grossSubtotal: price * quantity,
-        valueIva: iva_value,
-        valueIgv: igv_value,
+        baseTax,
+        discount,
+        grossSubtotal,
+        valueIva,
+        valueIgv,
         total,
         id_client: venta.ClienteId
       };

@@ -78,11 +78,12 @@ export class ReportSalesComponent implements OnInit {
 
         // Totales
         doc.setFontSize(12);
-        doc.text(`Subtotal: $${(order.baseTax || 0).toFixed(2)}`, 14, finalY + 10);
+        doc.text(`Subtotal con descuento: $${(order.grossSubtotal || 0).toFixed(2)}`, 14, finalY + 10);
         doc.text(`Descuento: $${(order.descount || 0).toFixed(2)}`, 14, finalY + 18);
-        doc.text(`IVA: $${(order.totalIva || 0).toFixed(2)}`, 14, finalY + 26);
-        doc.text(`IGV: $${(order.totalIgv || 0).toFixed(2)}`, 14, finalY + 34);
-        doc.text(`Total: $${(order.grossSubtotal || 0).toFixed(2)}`, 14, finalY + 42);
+        doc.text(`IVA: $${(order.totalIva || 0).toFixed(2)}`, 14, finalY + 34);
+        doc.text(`IGV: $${(order.totalIgv || 0).toFixed(2)}`, 14, finalY + 42);
+        doc.text(`Total con Iva: $${((order.baseTax || 0) + (order.totalIva || 0)).toFixed(2)}`, 14, finalY + 50);
+        doc.text(`Total con Igv: $${((order.baseTax || 0) + (order.totalIgv || 0)).toFixed(2)}`, 14, finalY + 58);
 
         doc.save(`Factura_${order.id}.pdf`);
       },

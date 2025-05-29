@@ -10,6 +10,7 @@ import {Person} from '../app/model/product.model';
     stock: number;
     quantity: number;
     price: number;
+    discount: number;
   }
 
   export interface Venta {
