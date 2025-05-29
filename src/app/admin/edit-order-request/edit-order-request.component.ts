@@ -1,11 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 import {Person} from '../../model/product.model';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ProductsService} from '../../services/products.service';
 import {PersonService} from '../../services/person.service';
 import {OrderRequestServices} from '../../services/OrderRequestServices';
-import {ArticuloSeleccionado, PersonSelect, Venta} from '../../../interfaces/orderSalesIterfaces';
+import {
+  ArticuloSeleccionado,
+  OrderRequestWithClientDto,
+  PersonSelect,
+  Venta
+} from '../../../interfaces/orderSalesIterfaces';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -15,7 +20,7 @@ import Swal from 'sweetalert2';
 })
 export class EditOrderRequestComponent implements OnInit {
 
-
+  order?: OrderRequestWithClientDto;
   public productos: any;
   public Articulos: any;
   searchTerm: string = '';
@@ -35,31 +40,28 @@ export class EditOrderRequestComponent implements OnInit {
     // private orderRequestService: OrderRequestServices,
     private personService: PersonService,
     private fb: FormBuilder,
-    private orderRequestService: OrderRequestServices
+    private orderRequestService: OrderRequestServices,
+    private route: ActivatedRoute
   ) {
   }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      const idParam = params.get('id');
+      if (idParam) {
+        const orderId = +idParam; // convierte string a número
+        this.loadOrder(orderId);
+      }
+    });
+
+
+
+
     this.articulosForm = this.fb.group({
       items: this.fb.array([])
     });
 
-    // Llamada para obtener una orden
-    this.orderRequestService.getOrders().subscribe(response => {
-      const orden = response[0][0]; // ✅ Porque es [[{...}]]
 
-      // Autollenar cliente
-      this.selectedPerson = {
-        id: orden.idClient,
-        primerNombre: orden.primerNombre,
-        segundoNombre: orden.segundoNombre,
-        apellidoPaterno: orden.apellidoPaterno,
-        apellidoMaterno: orden.apellidoMaterno,
-        numberIdentification: orden.numberIdentification
-      };
-
-      // Aquí podrías llenar los productos si el backend lo incluye
-    });
 
     // Cargar artículos
     this.productsService.getAllItems().subscribe(items => {
@@ -92,6 +94,62 @@ export class EditOrderRequestComponent implements OnInit {
       this.Persons = resp.person;
     });
     }
+
+  loadOrder(id: number): void {
+    this.orderRequestService.getOrderById(id).subscribe({
+      next: data => {
+        console.log('Orden cargada:', data);
+        this.order = data;
+        this.items.clear();
+
+        // Guardar ids de artículos ya seleccionados en la orden
+        const orderedItemIds = data.items.map(i => i.item_id);
+
+        // Llenar artículos que ya vienen en la orden
+        data.items.forEach(item => {
+          this.items.push(this.fb.group({
+            id: [item.item_id],
+            name: [item.item_name],
+            selected: [true],
+            stock: [0],
+            quantity: [item.total_units, [Validators.min(1)]],
+            discount: [item.discount_value || 0],
+            price: [item.price]
+          }));
+        });
+
+        // Ahora cargar todos los artículos del backend
+        this.productsService.getAllItems().subscribe(items => {
+          items.forEach((item: any) => {
+            // Si el artículo NO está en la orden, lo añadimos como no seleccionado
+            if (!orderedItemIds.includes(item.id)) {
+              this.items.push(this.fb.group({
+                id: [item.id],
+                name: [item.name],
+                selected: [false],
+                stock: [item.stock],
+                quantity: [1, [Validators.min(1)]],
+                discount: [0],
+                price: [item.price]
+              }));
+            }
+          });
+        });
+
+        // Autollenar persona
+        this.selectedPerson = {
+          id: data.idClient,
+          primerNombre: data.primerNombre || '',
+          segundoNombre: data.segundoNombre || '',
+          apellidoPaterno: data.apellidoPaterno || '',
+          apellidoMaterno: data.apellidoMaterno || '',
+          numberIdentification: data.numberIdentification || ''
+        };
+      },
+      error: err => console.error('Error al obtener la orden', err)
+    });
+
+  }
 
 
   onSubmit() {
